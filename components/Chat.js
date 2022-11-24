@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import CustomActions from './CustomActions';
 import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat';
 import { StyleSheet, View, Platform, KeyboardAvoidingView, Text } from 'react-native';
 
@@ -131,11 +132,18 @@ export default function Chat(props) {
         }
       }
 
+      
+const renderCustomActions = (props) => {
+  return <CustomActions {...props} />;
+};
+
+
     return (
         <View style={[{ backgroundColor: color }, styles.container]}>
       <GiftedChat
         renderBubble={renderBubble.bind()}
         renderInputToolbar={renderInputToolbar.bind()}
+        renderActions={renderCustomActions}
         messages={messages}
         showAvatarForEveryMessage={true}
         onSend={messages => onSend(messages)}
