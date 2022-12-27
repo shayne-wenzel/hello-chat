@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
+import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import PropTypes from "prop-types";
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
@@ -46,7 +46,7 @@ export default class CustomActions extends React.Component {
      */
     pickImage = async () => {
         // Ask user for permission to access photo library
-        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
 
         try {
             // If permission is granted, let user choose a picture
@@ -77,7 +77,7 @@ export default class CustomActions extends React.Component {
     takePhoto = async () => {
 
         // Ask user for permission to access photo library and camera
-        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL, Permissions.CAMERA);
+        const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY, Permissions.CAMERA);
         try {
             // If permission is granted, let user take a picture
             if (status === 'granted') {
@@ -100,7 +100,7 @@ export default class CustomActions extends React.Component {
      */
     getLocation = async () => {
         // Ask user for permission to access current location
-        const { status } = await Permissions.askAsync(Permissions.LOCATION);
+        const { status } = await Permissions.askAsync(Permissions.LOCATION_FOREGROUND);
         try {
             // If permission is granted, get the current location
             if (status === 'granted') {
